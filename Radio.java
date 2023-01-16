@@ -1,9 +1,15 @@
 public class Radio implements IRadio {
     
     private int estado;
+    private int ama;
+    private double fma;
+    private String freq;
 
     public Radio(){
         estado = 0;
+        ama = 530;
+        fma = 87.9;
+        freq = "AM";
     }
 
 
@@ -27,4 +33,19 @@ public class Radio implements IRadio {
         estado = 0;
     }
 
+    public String getFrequence(){
+        return freq;
+    }
+
+    public void setFrequence(String freq){
+        this.freq = freq;
+    }
+
+    public int getAMActualStation(){
+        return ama;
+    }
+
+    public double getFMActualStation(){
+        return fma;
+    }
 }
