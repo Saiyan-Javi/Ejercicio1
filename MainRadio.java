@@ -29,7 +29,7 @@ public class MainRadio {
                                 radio = "\n---------------------------------------------------------\n--                    Modo: FM                         --\n--                Frecuencia: "+panel.getFMActualStation()+"                     --\n---------------------------------------------------------\n";
                             }
                         }
-                        String menu2 = "Elija una de las opciones\n1. Apagar radio\n2. Cambiar AM/FM\n3. ";
+                        String menu2 = "Elija una de las opciones\n1. Apagar radio\n2. Cambiar AM/FM\n3. Avanzar/Retroceder emisora\n4. Guardar emisora actual\n5. Cargar emisora";
                         int opc2 = 0;
                         System.out.println(radio);
                         System.out.println(menu2);
@@ -53,7 +53,6 @@ public class MainRadio {
                                             case 1:{
                                                 try{
                                                     panel.setFrequence("AM");
-                                                    //System.out.println("AM");
                                                     opc3 = 0;
                                                     opc2 = 0;
                                                 } catch(Exception ex) {
@@ -73,6 +72,17 @@ public class MainRadio {
                                             }
                                         }
                                     }
+                                }
+                                case 3:{
+                                    String menu4 = "Elija una de las opciones\n1. Avanzar emisora\n2. Retroceder emisora\n3. Cambiar emisora manualmente\n(Recuerde que las emisoras de AM avanzan en intervalos de 10 y las de FM de 0.2) ";
+                                    int opc4 = 0;
+                                    System.out.println(menu4);
+                                    while(opc4>=1 && opc4<4){
+                                        
+                                    }
+                                }
+                                case 4:{
+
                                 }
                             }
                         }

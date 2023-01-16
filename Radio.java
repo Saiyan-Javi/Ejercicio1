@@ -48,4 +48,50 @@ public class Radio implements IRadio {
     public double getFMActualStation(){
         return fma;
     }
+
+    public void setAMActualStation(int fam){
+        ama = fam;
+    }
+
+    public void setFMActualStation(double ffm){
+        fma = ffm;
+    }
+
+    public void Forward(){
+        if(freq.equals("AM")){
+            if(ama==1610){
+                ama = 530;
+            }
+            else {
+                ama = ama + 10;
+            }
+        }
+        else if(freq.equals("FM")){
+            if(fma==107.9){
+                fma = 87.9;
+            }
+            else {
+                fma = fma + 0.2;
+            }
+        }
+    }
+
+    public void Backward(){
+        if(freq.equals("AM")){
+            if(ama==530){
+                ama = 1610;
+            }
+            else {
+                ama = ama - 10;
+            }
+        }
+        else if(freq.equals("FM")){
+            if(fma==87.9){
+                fma = 107.9;
+            }
+            else {
+                fma = fma - 0.2;
+            }
+        }
+    }
 }
