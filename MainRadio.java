@@ -160,39 +160,86 @@ public class MainRadio {
                                     break;
                                 }
                                 case 4:{
-                                    if(panel.getFrequence().equals("AM")){
-                                        String menu7 = "\nElija una de las opciones\n1. Guardar emisora\n2. Ver slots de emisora\n3. Para cargar una emisora\n4. Volver al menu anterior";
-                                        int opc7 = 0;
-                                        System.out.println(menu7);
-                                        opc7 = teclado.nextInt();
-                                        while(opc7>=1 && opc7<4){
-                                            switch(opc7){
-                                                case 1:{
-                                                    String menu71 = "\nIndique en que slot desea guardar la emisora actual";
-                                                    int slot71 = 0;
-                                                    while(slot71<1 || slot71>12){
-                                                        System.out.println(menu71);
-                                                        slot71 = teclado.nextInt();
-                                                    }
-                                                    panel.saveAMStation(panel.getAMActualStation(), slot71);
-                                                    break;
+                                    String menu7 = "\nElija una de las opciones\n1. Guardar emisora\n2. Ver slots de emisora\n3. Para cargar una emisora\n4. Volver al menu anterior";
+                                    int opc7 = 0;
+                                    System.out.println(menu7);
+                                    opc7 = teclado.nextInt();
+                                    while(opc7>=1 && opc7<5){
+                                        switch(opc7){
+                                            case 1:{
+                                                String menu71 = "\nIndique en que slot desea guardar la emisora actual";
+                                                int slot71 = 0;
+                                                while(slot71<1 || slot71>12){
+                                                    System.out.println(menu71);
+                                                    slot71 = teclado.nextInt();
                                                 }
-                                                case 2:{
-                                                    String menu72 = "\nIndique que slot desea ver:\n(Recuerde que van del 1 al 12)";
-                                                    int slot72 = 0;
-                                                    while(slot72<1 || slot72>12){
-                                                        System.out.println(menu72);
-                                                        slot72 = teclado.nextInt();
+                                                if(panel.getFrequence().equals("AM")){
+                                                panel.saveAMStation(panel.getAMActualStation(), slot71);
+                                                } else {
+                                                    if(panel.getFrequence().equals("FM")){
+                                                        panel.saveFMStation(panel.getFMActualStation(), slot71);
                                                     }
-                                                    System.out.println("\nEl slot tiene ocupado la emisora: "+panel.getAMSlot(slot72));
-                                                    System.out.println("\nSi este muestra 0 significa que aun no tiene asignada una emisora.");
-                                                    break;
                                                 }
+                                                break;
                                             }
-                                            opc7 = 0;
+                                            case 2:{
+                                                String menu72 = "\nIndique que slot desea ver:\n(Recuerde que van del 1 al 12)";
+                                                int slot72 = 0;
+                                                while(slot72<1 || slot72>12){
+                                                    System.out.println(menu72);
+                                                    slot72 = teclado.nextInt();
+                                                }
+                                                if(panel.getFrequence().equals("AM")){
+                                                    System.out.println("\nEl slot tiene ocupado la emisora: "+panel.getAMSlot(slot72));
+                                                    } else {
+                                                        if(panel.getFrequence().equals("FM")){
+                                                            System.out.println("\nEl slot tiene ocupado la emisora: "+panel.getFMSlot(slot72));
+                                                        }
+                                                    }
+                                                System.out.println("\nSi este muestra 0 significa que aun no tiene asignada una emisora.");
+                                                break;
+                                            }
+                                            case 3:{
+                                                String menu73 = "\nQue slot de emisora desea cargar:\n(Recuerde que van del 1 al 12)";
+                                                int slot73 = 0;
+                                                while(slot73<1 || slot73>12){
+                                                    System.out.println(menu73);
+                                                    slot73 = teclado.nextInt();
+                                                }
+                                                if(panel.getFrequence().equals("AM")){
+                                                    if(panel.getAMSlot(slot73) == 0){
+                                                        System.out.println("\nNo se puede cargar este slot porque no tiene guardada una emisora.");
+                                                        break;
+                                                    }
+                                                    else {
+                                                    System.out.println("\nSe ha cargado la emisora: "+panel.getAMSlot(slot73));
+                                                    panel.setAMActualStation(panel.getAMSlot(slot73));
+                                                    radio = "\n---------------------------------------------------------\n                      Modo: AM\n                  Frecuencia: "+panel.getAMActualStation()+"\n---------------------------------------------------------\n";
+                                                    }
+                                                } else {
+                                                    if(panel.getFrequence().equals("FM")){
+                                                        if(panel.getFMSlot(slot73) == 0){
+                                                            System.out.println("\nNo se puede cargar este slot porque no tiene guardada una emisora.");
+                                                            break;
+                                                        }
+                                                        else {
+                                                        System.out.println("\nSe ha cargado la emisora: "+panel.getFMSlot(slot73));
+                                                        panel.setFMActualStation(panel.getFMSlot(slot73));
+                                                        radio = "\n---------------------------------------------------------\n                      Modo: FM\n                  Frecuencia: "+panel.getFMActualStation()+"\n---------------------------------------------------------\n";
+                                                        }
+                                                    }
+                                                }
+                                                System.out.println(radio);
+                                                break;
+                                            }
+                                            case 4:{
+                                                opc7 = 0;
+                                                opc2 = 0;
+                                            }
                                         }
-                                        break;
+                                        opc7 = 0;
                                     }
+                                    break;
                                 }
                             }
                         }

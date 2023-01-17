@@ -116,6 +116,7 @@ public class Radio implements IRadio {
     }
 
     public void saveFMStation(double emisora, int slot){
-        
+        EmisorasFM[slot-1] = emisora;
+        System.out.println("Emisora: "+emisora+" agregada al slot: "+slot);
     }
 }
