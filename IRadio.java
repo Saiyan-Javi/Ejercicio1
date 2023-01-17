@@ -18,9 +18,9 @@ public interface IRadio {
 	
 	public String getFrequence(); //A
 	
-	public void Forward();
+	public void Forward(); //A
 	
-	public void Backward();
+	public void Backward(); //A
 	
 	public double getFMActualStation(); //A
 	
