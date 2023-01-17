@@ -147,7 +147,36 @@ public class MainRadio {
                                             break;
                                             }
                                             case 3:{
-
+                                                if(panel.getFrequence().equals("AM")){
+                                                    String menu6 = "\nIngrese la frecuencia a la cual quiere cambiar:\n(Recuerde que AM se encuentra entre 530 y 1610 con intervalos de 10)";
+                                                    int freq = 0;
+                                                    while(freq<530 || freq>1610){
+                                                        System.out.println(menu6);
+                                                        freq = teclado.nextInt();
+                                                        teclado.nextLine();
+                                                        System.out.println(freq%10);
+                                                        if(freq%10 != 0){
+                                                            System.out.println("\nFrecuencia invalida, debe ser un multiplo de 10 entre 530 y 1610.");
+                                                            freq = 0;
+                                                        }
+                                                    }
+                                                    panel.setAMActualStation(freq);
+                                                }
+                                                else if(panel.getFrequence().equals("FM")){
+                                                    String menu6 = "\nIngrese la frecuencia a la cual quiere cambiar:\n(Recuerde que FM se encuentra entre 87.9 y 107.9 con intervalos de 0.2)";
+                                                    double freq = 0;
+                                                    while(freq<87.9 || freq>107.9){
+                                                        System.out.println(menu6);
+                                                        freq = teclado.nextInt();
+                                                        teclado.nextLine();
+                                                        System.out.println(freq%10);
+                                                        if((freq*10)%2 != 0){
+                                                            System.out.println("\nFrecuencia invalida, debe ser un valor entre 87.9 y 107.9 con interavalos de 0.2");
+                                                            freq = 0;
+                                                        }
+                                                    }
+                                                    panel.setFMActualStation(freq);
+                                                }
                                             }
                                             case 4:{
                                                 opc2 = 0;
