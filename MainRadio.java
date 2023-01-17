@@ -71,6 +71,7 @@ public class MainRadio {
                                                 break;
                                             }
                                         }
+                                        opc3 = 0;
                                     }
                                     break;
                                 }
@@ -93,25 +94,6 @@ public class MainRadio {
                                                     }
                                                 }
                                                 System.out.println(radio);
-                                                String menu5 = "\nElija una de las opciones\n1. Regresar al menu anterior\n2. Seguir aumentando";
-                                                int opc5 = 0;
-                                                System.out.println(menu5);
-                                                opc5 = teclado.nextInt();
-                                                teclado.nextLine();
-                                                while(opc5>=1 && opc5<3){
-                                                    switch(opc5){
-                                                        case 1:{
-                                                            opc4 = 0;
-                                                            opc5 = 0;
-                                                            break;
-                                                        }
-                                                        case 2:{
-                                                            opc5 = 0;
-                                                            break;
-                                                        }
-                                                    }
-                                                    opc5 = 0;
-                                                }
                                                 break;
                                             }
                                             case 2:{
@@ -124,27 +106,8 @@ public class MainRadio {
                                                     radio = "\n---------------------------------------------------------\n                      Modo: FM\n                  Frecuencia: "+panel.getFMActualStation()+"\n---------------------------------------------------------\n";
                                                 }
                                             }
-                                            System.out.println(radio);
-                                            String menu5 = "\nElija una de las opciones\n1. Regresar al menu anterior\n2. Seguir disminuyendo";
-                                            int opc5 = 0;
-                                            System.out.println(menu5);
-                                            opc5 = teclado.nextInt();
-                                            teclado.nextLine();
-                                            while(opc5>=1 && opc5<3){
-                                                switch(opc5){
-                                                    case 1:{
-                                                        opc4 = 0;
-                                                        opc5 = 0;
-                                                        break;
-                                                    }
-                                                    case 2:{
-                                                        opc5 = 0;
-                                                        break;
-                                                    }
-                                                }
-                                                opc5 = 0;
-                                            }
-                                            break;
+                                                System.out.println(radio);
+                                                break;
                                             }
                                             case 3:{
                                                 if(panel.getFrequence().equals("AM")){
@@ -154,29 +117,38 @@ public class MainRadio {
                                                         System.out.println(menu6);
                                                         freq = teclado.nextInt();
                                                         teclado.nextLine();
-                                                        System.out.println(freq%10);
                                                         if(freq%10 != 0){
                                                             System.out.println("\nFrecuencia invalida, debe ser un multiplo de 10 entre 530 y 1610.");
                                                             freq = 0;
                                                         }
                                                     }
                                                     panel.setAMActualStation(freq);
+
                                                 }
                                                 else if(panel.getFrequence().equals("FM")){
                                                     String menu6 = "\nIngrese la frecuencia a la cual quiere cambiar:\n(Recuerde que FM se encuentra entre 87.9 y 107.9 con intervalos de 0.2)";
                                                     double freq = 0;
                                                     while(freq<87.9 || freq>107.9){
                                                         System.out.println(menu6);
-                                                        freq = teclado.nextInt();
+                                                        freq = teclado.nextDouble();
                                                         teclado.nextLine();
-                                                        System.out.println(freq%10);
-                                                        if((freq*10)%2 != 0){
+                                                        if((freq*10)%2 != 1){
                                                             System.out.println("\nFrecuencia invalida, debe ser un valor entre 87.9 y 107.9 con interavalos de 0.2");
                                                             freq = 0;
                                                         }
                                                     }
                                                     panel.setFMActualStation(freq);
                                                 }
+                                                if(panel.getFrequence().equals("AM")){
+                                                    radio = "\n---------------------------------------------------------\n                      Modo: AM\n                  Frecuencia: "+panel.getAMActualStation()+"\n---------------------------------------------------------\n";
+                                                }
+                                                else {
+                                                    if(panel.getFrequence().equals("FM")){
+                                                    radio = "\n---------------------------------------------------------\n                      Modo: FM\n                  Frecuencia: "+panel.getFMActualStation()+"\n---------------------------------------------------------\n";
+                                                }
+                                            }
+                                            System.out.println(radio);
+                                                break;
                                             }
                                             case 4:{
                                                 opc2 = 0;
@@ -189,7 +161,7 @@ public class MainRadio {
                                     break;
                                 }
                                 case 4:{
-
+                                    
                                 }
                             }
                         }
