@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class MainRadio {
     public static void main(String[] args) {
@@ -29,13 +28,13 @@ public class MainRadio {
                                 radio = "\n---------------------------------------------------------\n                      Modo: FM\n                  Frecuencia: "+panel.getFMActualStation()+"\n---------------------------------------------------------\n";
                             }
                         }
-                        String menu2 = "Elija una de las opciones\n1. Apagar radio\n2. Cambiar AM/FM\n3. Avanzar/Retroceder emisora\n4. Guardar emisora actual\n5. Cargar emisora";
+                        String menu2 = "Elija una de las opciones\n1. Apagar radio\n2. Cambiar AM/FM\n3. Avanzar/Retroceder emisora\n4. Guardar/Cargar emisoras";
                         int opc2 = 0;
                         System.out.println(radio);
                         System.out.println(menu2);
                         opc2 = teclado.nextInt();
                         teclado.nextLine();
-                        while(opc2 >= 1 && opc2 < 5){
+                        while(opc2 >= 1 && opc2 < 6){
                             switch(opc2){
                                 case 1:{
                                     panel.off();
@@ -161,7 +160,39 @@ public class MainRadio {
                                     break;
                                 }
                                 case 4:{
-                                    
+                                    if(panel.getFrequence().equals("AM")){
+                                        String menu7 = "\nElija una de las opciones\n1. Guardar emisora\n2. Ver slots de emisora\n3. Para cargar una emisora\n4. Volver al menu anterior";
+                                        int opc7 = 0;
+                                        System.out.println(menu7);
+                                        opc7 = teclado.nextInt();
+                                        while(opc7>=1 && opc7<4){
+                                            switch(opc7){
+                                                case 1:{
+                                                    String menu71 = "\nIndique en que slot desea guardar la emisora actual";
+                                                    int slot71 = 0;
+                                                    while(slot71<1 || slot71>12){
+                                                        System.out.println(menu71);
+                                                        slot71 = teclado.nextInt();
+                                                    }
+                                                    panel.saveAMStation(panel.getAMActualStation(), slot71);
+                                                    break;
+                                                }
+                                                case 2:{
+                                                    String menu72 = "\nIndique que slot desea ver:\n(Recuerde que van del 1 al 12)";
+                                                    int slot72 = 0;
+                                                    while(slot72<1 || slot72>12){
+                                                        System.out.println(menu72);
+                                                        slot72 = teclado.nextInt();
+                                                    }
+                                                    System.out.println("\nEl slot tiene ocupado la emisora: "+panel.getAMSlot(slot72));
+                                                    System.out.println("\nSi este muestra 0 significa que aun no tiene asignada una emisora.");
+                                                    break;
+                                                }
+                                            }
+                                            opc7 = 0;
+                                        }
+                                        break;
+                                    }
                                 }
                             }
                         }

@@ -4,14 +4,17 @@ public class Radio implements IRadio {
     private int ama;
     private double fma;
     private String freq;
+    private int EmisorasAM[];
+    private double EmisorasFM[];
 
     public Radio(){
         estado = 0;
         ama = 530;
         fma = 87.9;
         freq = "AM";
+        this.EmisorasAM = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};
+        this.EmisorasFM = new double[]{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
     }
-
 
     public boolean isOn(){
         boolean estadoradio;
@@ -71,7 +74,8 @@ public class Radio implements IRadio {
                 fma = 87.9;
             }
             else {
-                fma = fma + 0.2;
+                double fmar = fma + 0.2;
+                fma = Math.round(fmar*100d) / 100d;
             }
         }
     }
@@ -90,8 +94,28 @@ public class Radio implements IRadio {
                 fma = 107.9;
             }
             else {
-                fma = fma - 0.2;
+                double fmar = fma - 0.2;
+                fma = Math.round(fmar*100d) / 100d;
             }
         }
+    }
+
+    public int getAMSlot(int slot){
+        int emisoraam = EmisorasAM[slot-1];
+        return emisoraam;
+    }
+
+    public void saveAMStation(int emisora, int slot){
+        EmisorasAM[slot-1] = emisora;
+        System.out.println("Emisora: "+emisora+" agregada al slot: "+slot);
+    }
+
+    public double getFMSlot(int slot){
+        double emisorafm = EmisorasFM[slot-1];
+        return emisorafm;
+    }
+
+    public void saveFMStation(double emisora, int slot){
+        
     }
 }
